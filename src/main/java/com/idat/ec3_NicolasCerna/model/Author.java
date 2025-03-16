@@ -4,19 +4,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Entity
-@Table(name = "author")
 @Getter
 @Setter
 public class Author {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Hibernate autogenera el ID
     private Integer id;
 
     @Column(nullable = false)
     private String name;
-
-    private Date birthdate;
 }

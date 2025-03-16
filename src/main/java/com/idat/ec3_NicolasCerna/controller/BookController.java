@@ -3,12 +3,13 @@ package com.idat.ec3_NicolasCerna.controller;
 import com.idat.ec3_NicolasCerna.model.Book;
 import com.idat.ec3_NicolasCerna.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/books")
 public class BookController {
 
     @Autowired
@@ -22,13 +23,39 @@ public class BookController {
 
     // Obtener un libro por ID
     @GetMapping("/{id}")
-    public Book findById(@PathVariable Integer id) {
-        return bookService.findById(id);
+    public ResponseEntity<Book> getBookById(@PathVariable Integer id) {
+        Book book = bookService.findById(id);
+        if (book == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(book);
     }
 
-    // Crear un nuevo libro
+    // Guardar un libro
     @PostMapping
-    public Book save(@RequestBody Book book) {
-        return bookService.save(book);
+    public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+        Book savedBook = bookService.save(book);
+        return ResponseEntity.ok(savedBook);
+    }
+
+    // Actualizar un libro
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Integer id, @RequestBody Book bookDetails) {
+        Book updatedBook = bookService.update(id, bookDetails);
+        if (updatedBook == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedBook);
+    }
+
+    // Eliminar un libro
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Integer id) {
+        Book existingBook = bookService.findById(id);
+        if (existingBook == null) {
+            return ResponseEntity.notFound().build();
+        }
+        bookService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

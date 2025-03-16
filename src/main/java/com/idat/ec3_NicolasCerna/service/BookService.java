@@ -7,4 +7,6 @@ public interface BookService {
     List<Book> listAll();
     Book findById(Integer id);
     Book save(Book book);
+    Book update(Integer id, Book bookDetails);
+    void delete(Integer id);
 }

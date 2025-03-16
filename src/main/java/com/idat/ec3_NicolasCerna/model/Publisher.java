@@ -5,16 +5,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "publisher")
 @Getter
 @Setter
 public class Publisher {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Hibernate autogenera el ID
     private Integer id;
 
     @Column(nullable = false)
     private String name;
 
-    private String country;
+    private String country;  // Permite valores nulos
 }
