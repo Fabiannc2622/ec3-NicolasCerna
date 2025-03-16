@@ -35,11 +35,9 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).map(existingBook -> {
             existingBook.setTitle(bookDetails.getTitle());
             existingBook.setPrice(bookDetails.getPrice());
-            // Validar si el autor existe
             if (bookDetails.getAuthor() != null && bookDetails.getAuthor().getId() != null) {
                 existingBook.setAuthor(bookDetails.getAuthor());
             }
-            // Validar si la editorial existe
             if (bookDetails.getPublisher() != null && bookDetails.getPublisher().getId() != null) {
                 existingBook.setPublisher(bookDetails.getPublisher());
             }

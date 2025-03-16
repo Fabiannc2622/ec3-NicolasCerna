@@ -7,5 +7,5 @@ public interface AuthorService {
     List<Author> listAll();
     Author findById(Integer id);
     Author save(Author author);
-    void delete(Integer id); // Nuevo método para eliminar
+    void delete(Integer id);
 }

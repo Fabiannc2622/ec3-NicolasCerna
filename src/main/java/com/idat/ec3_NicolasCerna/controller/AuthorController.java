@@ -30,6 +30,12 @@ public class AuthorController {
         return ResponseEntity.ok(service.save(author));
     }
 
+    /*
+    {
+      "name": "J.K. Rowling"
+    }
+    */
+
     @PutMapping("/{id}")
     public ResponseEntity<Author> update(@PathVariable Integer id, @RequestBody Author author) {
         author.setId(id);

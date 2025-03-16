@@ -30,6 +30,13 @@ public class PublisherController {
         return ResponseEntity.ok(service.save(publisher));
     }
 
+    /*
+    {
+      "name": "Bruño",
+      "country": "Perú"
+    }
+    */
+
     @PutMapping("/{id}")
     public ResponseEntity<Publisher> update(@PathVariable Integer id, @RequestBody Publisher publisher) {
         publisher.setId(id);

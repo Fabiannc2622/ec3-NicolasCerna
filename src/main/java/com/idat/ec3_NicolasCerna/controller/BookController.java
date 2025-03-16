@@ -35,12 +35,21 @@ public class BookController {
         return ResponseEntity.ok(savedBook);
     }
 
+    /*
+    {
+      "title": "Harry Potter",
+      "price": 49.99,
+      "author": { "id": 1 },
+      "publisher": { "id": 1 }
+    }
+    */
+
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Integer id, @RequestBody Book bookDetails) {
         Book updatedBook = bookService.update(id, bookDetails);
 
         if (updatedBook == null) {
-            return ResponseEntity.status(404).body(null);  // Retorna 404 si no se encuentra
+            return ResponseEntity.status(404).body(null);
         }
 
         return ResponseEntity.ok(updatedBook);
