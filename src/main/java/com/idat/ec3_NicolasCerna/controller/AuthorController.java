@@ -9,25 +9,41 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/authors")  // Agregamos "api" para seguir la convención REST
+@RequestMapping("/api/authors")
 public class AuthorController {
 
     @Autowired
     private AuthorService service;
 
+    // Listar todos los autores
     @GetMapping
-    public ResponseEntity<List<Author>> listAll() {
-        return ResponseEntity.ok(service.listAll());
+    public List<Author> listAll() {
+        return service.listAll();
     }
 
+    // Buscar un autor por ID
     @GetMapping("/{id}")
     public ResponseEntity<Author> findById(@PathVariable Integer id) {
-        Author author = service.findById(id);
-        return author != null ? ResponseEntity.ok(author) : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(service.findById(id));
     }
 
+    // Guardar un nuevo autor
     @PostMapping
     public ResponseEntity<Author> save(@RequestBody Author author) {
         return ResponseEntity.ok(service.save(author));
+    }
+
+    // Editar un autor
+    @PutMapping("/{id}")
+    public ResponseEntity<Author> update(@PathVariable Integer id, @RequestBody Author author) {
+        author.setId(id);
+        return ResponseEntity.ok(service.save(author));
+    }
+
+    // Eliminar un autor
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

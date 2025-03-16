@@ -42,9 +42,11 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Integer id, @RequestBody Book bookDetails) {
         Book updatedBook = bookService.update(id, bookDetails);
+
         if (updatedBook == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(404).body(null);  // Retorna 404 si no se encuentra
         }
+
         return ResponseEntity.ok(updatedBook);
     }
 

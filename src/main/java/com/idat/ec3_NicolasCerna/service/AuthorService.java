@@ -6,5 +6,6 @@ import java.util.List;
 public interface AuthorService {
     List<Author> listAll();
     Author findById(Integer id);
-    Author save(Author Author);
+    Author save(Author author);
+    void delete(Integer id); // Nuevo método para eliminar
 }

@@ -7,4 +7,5 @@ public interface PublisherService {
     List<Publisher> listAll();
     Publisher findById(Integer id);
     Publisher save(Publisher publisher);
+    void delete(Integer id);
 }
