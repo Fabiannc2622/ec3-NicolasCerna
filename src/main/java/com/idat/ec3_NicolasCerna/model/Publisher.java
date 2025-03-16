@@ -10,11 +10,11 @@ import lombok.Setter;
 public class Publisher {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Hibernate autogenera el ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
     private String name;
 
-    private String country;  // Permite valores nulos
+    private String country;
 }
